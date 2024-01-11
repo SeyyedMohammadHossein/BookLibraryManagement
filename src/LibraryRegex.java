@@ -5,7 +5,7 @@ public class LibraryRegex {
             getUserRegex = Pattern.compile("get_user (\\d+)"),
             getListOfUserRegex = Pattern.compile("getـlist_of_users"),
             removeUserRegex = Pattern.compile("delete-user (\\d+)"),
-            createBookRegex = Pattern.compile("create-book (\\w+) (\\w+) (\\d+)"),
+            createBookRegex = Pattern.compile("create-book ([\\w,.,_]+) ([\\w,.]+) (\\d+)"),
             deleteBookRegex = Pattern.compile("delete-book (\\d+)"),
             getBookRegex = Pattern.compile("get_book (\\d+)"),
             getListOfBookRegex = Pattern.compile("getـlist_of_books"),
