@@ -1,8 +1,11 @@
+import Sql.Connection.SqlConnection;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,14 +19,18 @@ public class Library {
     private ArrayList<Book> books;
     private Scanner scanner;
 
-    Library(String usersFileAddress, String booksFileAddress) throws IOException {
+    SqlConnection sql;
+
+    Library(/*String usersFileAddress, String booksFileAddress, */String sqlAddress, String sqlUsername, String sqlPassword) throws IOException {
         users = new ArrayList<>();
-        books = new ArrayList<>();
+        books = new ArrayList<>();/*
         usersInfo = new File(usersFileAddress);
         booksInfo = new File(booksFileAddress);
         System.out.println(readInfoFromFile());
         userWriter = new FileWriter(usersInfo);
-        bookWriter = new FileWriter(booksInfo);
+        bookWriter = new FileWriter(booksInfo);*/
+        sql = new SqlConnection(sqlAddress, sqlUsername, sqlPassword);
+        System.out.println(readInfoFromSql());
     }
 
     public String readInfoFromFile() throws FileNotFoundException {
@@ -55,6 +62,35 @@ public class Library {
             System.out.println(e.getMessage());
         }
         return "All data read successfully!";
+    }
+
+    public String readInfoFromSql() {
+        try {
+            ResultSet booksResultSet = sql.getResultSet("books");
+            while (booksResultSet.next()) {
+                String ISBN = booksResultSet.getString("ISBN");
+                String name = booksResultSet.getString("name");
+                String author = booksResultSet.getString("author");
+                String hasReserved = booksResultSet.getString("hasReserved");
+                books.add(new Book(name, author,ISBN, "0"));
+            }
+            ResultSet usersResultSet = sql.getResultSet("users");
+            while (usersResultSet.next()) {
+                String name = usersResultSet.getString("name");
+                String email = usersResultSet.getString("email");
+                String password = usersResultSet.getString("password");
+                users.add(new User(name, email, password));
+            }
+            ResultSet borrowedBooksResultSet = sql.getResultSet("borrowedbooks");
+            while (borrowedBooksResultSet.next()) {
+                String ISBN = borrowedBooksResultSet.getString("ISBN");
+                int id = Integer.parseInt(borrowedBooksResultSet.getString("userId"));
+                borrowBook(ISBN,id);
+            }
+            return "reading successfully";
+        } catch (Exception e){
+            return e.getMessage();
+        }
     }
 
     public String addUser(User user) {

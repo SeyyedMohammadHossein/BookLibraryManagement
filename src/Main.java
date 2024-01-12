@@ -2,13 +2,13 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 
-
 public class Main {
     public static void main(String[] args) throws IOException {
         /*File file = new File()*/
         LibraryRegex regex = new LibraryRegex();
-        Library library = new Library("C:\\Users\\Negar\\IdeaProjects\\AP_Midterm_Project\\src\\usersInfo.txt",
-                "C:\\Users\\Negar\\IdeaProjects\\AP_Midterm_Project\\src\\booksInfo");
+        Library library = new Library(/*"C:\\Users\\Negar\\IdeaProjects\\AP_Midterm_Project\\src\\usersInfo.txt",
+                "C:\\Users\\Negar\\IdeaProjects\\AP_Midterm_Project\\src\\booksInfo"
+                , */"jdbc:mysql://localhost:3306/jdbc", "root", "");
         Scanner scanner = new Scanner(System.in);
         String command = scanner.nextLine();
         Matcher matcher;
@@ -57,9 +57,11 @@ public class Main {
                 matcher = regex.returnBookRegex.matcher(command);
                 matcher.find();
                 System.out.println(library.returnBook(Integer.parseInt(matcher.group(2)), matcher.group(1)));
+            } else {
+                System.out.println("invalid command!");
             }
             command = scanner.nextLine();
         }
-        library.closeWriters();
+//        library.closeWriters();
     }
 }
