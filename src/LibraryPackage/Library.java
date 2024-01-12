@@ -76,7 +76,7 @@ public class Library {
                 String name = booksResultSet.getString("name");
                 String author = booksResultSet.getString("author");
                 String hasReserved = booksResultSet.getString("hasReserved");
-                books.add(new Book(name, author,ISBN, "0"));
+                books.add(new Book(name, author, ISBN, "0"));
             }
             ResultSet usersResultSet = sql.getResultSet("users");
             while (usersResultSet.next()) {
@@ -89,21 +89,26 @@ public class Library {
             while (borrowedBooksResultSet.next()) {
                 String ISBN = borrowedBooksResultSet.getString("ISBN");
                 int id = Integer.parseInt(borrowedBooksResultSet.getString("userId"));
-                borrowBook(ISBN,id);
+                borrowBook(ISBN, id,true);
             }
             return "reading successfully";
-        } catch (Exception e){
+        } catch (Exception e) {
             return e.getMessage();
         }
     }
 
     public String addUser(User user) {
-        for (User tempUser : users) {
-            if (tempUser.getEmail().equals(user.getEmail()))
-                return "duplicate value for email";
+        try {
+            for (User tempUser : users) {
+                if (tempUser.getEmail().equals(user.getEmail()))
+                    return "duplicate value for email";
+            }
+            users.add(user);
+            sql.addUserToDatabase(user.getName(), user.getEmail(), user.getPassword());
+            return "user successfully created " + users.size();
+        } catch (Exception e) {
+            return e.getMessage();
         }
-        users.add(user);
-        return "user successfully created " + users.size();
     }
 
     public String deleteUser(int id) {
@@ -130,12 +135,17 @@ public class Library {
     }
 
     public String addBook(Book book) throws IOException {
-        for (Book tempBook : books) {
-            if (tempBook.getISBN().equals(book.getISBN()))
-                return "DUPLICATE BOOK-ID";
+        try {
+            for (Book tempBook : books) {
+                if (tempBook.getISBN().equals(book.getISBN()))
+                    return "DUPLICATE BOOK-ID";
+            }
+            books.add(book);
+            sql.addBookToDatabase(book.getISBN(), book.getName(), book.getAuthor(), book.isHasReserved());
+            return "BOOK CREATED";
+        } catch (Exception e) {
+            return e.getMessage();
         }
-        books.add(book);
-        return "BOOK CREATED";
     }
 
     public String deleteBook(String ISBN) {
@@ -164,7 +174,7 @@ public class Library {
         return output;
     }
 
-    public String borrowBook(String ISBN, int id) {
+    public String borrowBook(String ISBN, int id, boolean isReading) {
         String output = "";
         try {
             Book book = getBook(ISBN);
@@ -181,6 +191,8 @@ public class Library {
             }
             book.setHasReserved(String.valueOf(id));
             user.addToBorrowedList(book);
+            if (!isReading)
+                sql.addBorrowedBookToDatabase(ISBN,id);
             output = "The book (" + book.getName() + " - " + book.getISBN() + ") "
                     + "was added to user's (" + user.getName() + " - " + id + ") borrowed list.";
             return output;

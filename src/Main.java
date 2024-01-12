@@ -57,7 +57,7 @@ public class Main {
             } else if (regex.borrowBookRegex.matcher(command).matches()) {
                 matcher = regex.borrowBookRegex.matcher(command);
                 matcher.find();
-                System.out.println(library.borrowBook(matcher.group(1), Integer.parseInt(matcher.group(2))));
+                System.out.println(library.borrowBook(matcher.group(1), Integer.parseInt(matcher.group(2)),false));
             } else if (regex.returnBookRegex.matcher(command).matches()) {
                 matcher = regex.returnBookRegex.matcher(command);
                 matcher.find();
