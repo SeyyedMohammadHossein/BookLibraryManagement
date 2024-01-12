@@ -1,3 +1,8 @@
+import LibraryPackage.utils.Book;
+import LibraryPackage.Library;
+import LibraryPackage.Enum.LibraryRegex;
+import LibraryPackage.utils.User;
+
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.regex.Matcher;

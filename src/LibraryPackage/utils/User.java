@@ -1,3 +1,5 @@
+package LibraryPackage.utils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ public class User {
     
     List<Book> borrowedBooks;
 
-    User(String name, String email, String password){
+    public User(String name, String email, String password){
         setName(name);
         setEmail(email);
         setPassword(password);

@@ -1,3 +1,5 @@
+package LibraryPackage.utils;
+
 public class Book {
     private String name;
     private String author;
@@ -5,7 +7,7 @@ public class Book {
 
     private String hasReserved;
 
-    Book(String name, String author, String ISBN, String hasReserved) {
+    public Book(String name, String author, String ISBN, String hasReserved) {
         setName(name);
         setAuthor(author);
         setISBN(ISBN);

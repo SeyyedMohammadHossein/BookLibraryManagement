@@ -1,3 +1,7 @@
+package LibraryPackage;
+
+import LibraryPackage.utils.Book;
+import LibraryPackage.utils.User;
 import Sql.Connection.SqlConnection;
 
 import java.io.File;
@@ -21,7 +25,7 @@ public class Library {
 
     SqlConnection sql;
 
-    Library(/*String usersFileAddress, String booksFileAddress, */String sqlAddress, String sqlUsername, String sqlPassword) throws IOException {
+    public Library(/*String usersFileAddress, String booksFileAddress, */String sqlAddress, String sqlUsername, String sqlPassword) throws IOException {
         users = new ArrayList<>();
         books = new ArrayList<>();/*
         usersInfo = new File(usersFileAddress);

@@ -1,7 +1,9 @@
+package LibraryPackage.Enum;
+
 import java.util.regex.Pattern;
 
 public class LibraryRegex {
-    Pattern createUserRegex = Pattern.compile("create-user (\\w+) ([\\w.\\d]+@\\w+.\\w+) (.+)"),
+    public Pattern createUserRegex = Pattern.compile("create-user (\\w+) ([\\w.\\d]+@\\w+.\\w+) (.+)"),
             getUserRegex = Pattern.compile("get_user (\\d+)"),
             getListOfUserRegex = Pattern.compile("getـlist_of_users"),
             removeUserRegex = Pattern.compile("delete-user (\\d+)"),
