@@ -89,7 +89,7 @@ public class Library {
             while (borrowedBooksResultSet.next()) {
                 String ISBN = borrowedBooksResultSet.getString("ISBN");
                 int id = Integer.parseInt(borrowedBooksResultSet.getString("userId"));
-                borrowBook(ISBN, id,true);
+                borrowBook(ISBN, id, true);
             }
             return "reading successfully";
         } catch (Exception e) {
@@ -192,7 +192,7 @@ public class Library {
             book.setHasReserved(String.valueOf(id));
             user.addToBorrowedList(book);
             if (!isReading)
-                sql.addBorrowedBookToDatabase(ISBN,id);
+                sql.addBorrowedBookToDatabase(ISBN, id);
             output = "The book (" + book.getName() + " - " + book.getISBN() + ") "
                     + "was added to user's (" + user.getName() + " - " + id + ") borrowed list.";
             return output;
@@ -214,7 +214,9 @@ public class Library {
                 throw new RuntimeException("This book has not been reserved by anyone.");
             }
             book.setHasReserved("0");
+            sql.returnBookUpdateHasReservedToDatabase(ISBN);
             user.removeFromBorrowedList(book);
+            sql.removeBookFromBorrowedBooksList(ISBN, id);
             output = "The book (" + book.getName() + " - " + book.getISBN() + ")"
                     + "was returned from user's (" + user.getName() + " - " + id + ") to library.";
             return output;

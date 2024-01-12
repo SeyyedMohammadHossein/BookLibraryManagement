@@ -46,10 +46,19 @@ public class User {
     }
 
     public void removeFromBorrowedList(Book book){
-        borrowedBooks.forEach(book1 -> {
-            if (book1.getISBN().equals(book.getISBN()))
+        /*borrowedBooks.forEach(book1 -> {
+            if (book1.getISBN().equals(book.getISBN())) {
                 borrowedBooks.remove(book1);
-        });
+                return;
+            }
+        });*/
+        for (Book tempBook : borrowedBooks) {
+            if (tempBook.getISBN().equals(book.getISBN())){
+                borrowedBooks.remove(tempBook);
+                return;
+            }
+        }
+        throw new RuntimeException("Book not found!");
     }
 
     public List<Book> getBorrowedList(){

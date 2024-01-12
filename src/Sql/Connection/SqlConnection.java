@@ -51,4 +51,20 @@ public class SqlConnection {
             throw new RuntimeException(e);
         }
     }
+
+    public void returnBookUpdateHasReservedToDatabase(String ISBN){
+        try {
+            statement.executeUpdate("UPDATE books SET hasReserved='0' WHERE ISBN='"+ ISBN + "'");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void removeBookFromBorrowedBooksList(String ISBN, int id){
+        try {
+            statement.executeUpdate("DELETE FROM borrowedbooks WHERE ISBN='"+ ISBN +"' AND userID='" + id + "'");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
