@@ -1,11 +1,3 @@
-/**
- * This project is defined to manage a local library.
- * <br>
- *
- * @author Mohammad Hossein Hosseini
- * @version 1.0
- * @since 2024/13/01
- */
 
 import LibraryPackage.utils.Book;
 import LibraryPackage.Library;
@@ -15,6 +7,14 @@ import LibraryPackage.utils.User;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
+/**
+ * This project is defined to manage a local library.
+ * <br>
+ *
+ * @author Mohammad Hossein Hosseini
+ * @version 1.0
+ * @since 2024/13/01
+ */
 
 public class Main {
     /**
