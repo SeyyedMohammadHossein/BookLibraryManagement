@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"LibraryPackage.utils","l":"Book"},{"p":"LibraryPackage","l":"Library"},{"p":"LibraryPackage.Enum","l":"LibraryRegex"},{"p":"<Unnamed>","l":"Main"},{"p":"Sql.Connection","l":"SqlConnection"},{"p":"LibraryPackage.utils","l":"User"}];updateSearchResults();

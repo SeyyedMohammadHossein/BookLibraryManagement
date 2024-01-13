@@ -1,3 +1,12 @@
+/**
+ * This project is defined to manage a local library.
+ * <br>
+ *
+ * @author Mohammad Hossein Hosseini
+ * @version 1.0
+ * @since 2024/13/01
+ */
+
 import LibraryPackage.utils.Book;
 import LibraryPackage.Library;
 import LibraryPackage.Enum.LibraryRegex;
@@ -8,6 +17,13 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 
 public class Main {
+    /**
+     * In this application, for any management action, such as: adding a book, deleting a book, adding a user,<br>
+     * Reservation of books by the user, displaying the list of books, displaying the list of users, etc., are specific commands with specific entries.<br>
+     * If any of the input commands differ even by one character from the predetermined command; You will get a "invalid command" message.<br>
+     * Below is a partial description of each command. You can learn more about these commands by referring to the LibraryRegex section.
+     * @see LibraryRegex
+     */
     public static void main(String[] args) throws IOException {
         /*File file = new File()*/
         LibraryRegex regex = new LibraryRegex();
@@ -57,7 +73,7 @@ public class Main {
             } else if (regex.borrowBookRegex.matcher(command).matches()) {
                 matcher = regex.borrowBookRegex.matcher(command);
                 matcher.find();
-                System.out.println(library.borrowBook(matcher.group(1), Integer.parseInt(matcher.group(2)),false));
+                System.out.println(library.borrowBook(matcher.group(1), Integer.parseInt(matcher.group(2)), false));
             } else if (regex.returnBookRegex.matcher(command).matches()) {
                 matcher = regex.returnBookRegex.matcher(command);
                 matcher.find();
