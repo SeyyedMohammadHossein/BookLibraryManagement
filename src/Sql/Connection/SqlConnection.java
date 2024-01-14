@@ -46,6 +46,7 @@ public class SqlConnection {
 
     public void addBorrowedBookToDatabase(String ISBN, int id) {
         try {
+            statement.executeUpdate("UPDATE books SET hasReserved='" + id +"' WHERE ISBN='" + ISBN + "'");
             statement.executeUpdate("INSERT INTO borrowedbooks (ISBN,userID) VALUES ('" + ISBN + "','" + id + "')");
         } catch (SQLException e) {
             throw new RuntimeException(e);
