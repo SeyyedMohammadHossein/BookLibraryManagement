@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="LibraryManagement:ear exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/LibraryManagement_ear_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="BookLibraryManagement/web/Web" />
+      <element id="directory" name="lib">
+        <element id="archive" name="BookLibraryManagement.jar">
+          <element id="module-output" name="BookLibraryManagement" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

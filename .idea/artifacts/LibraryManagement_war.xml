@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="LibraryManagement:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/LibraryManagement_war</output-path>
+    <root id="archive" name="LibraryManagement_war.war">
+      <element id="artifact" artifact-name="LibraryManagement:ear exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.19.4" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.30" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

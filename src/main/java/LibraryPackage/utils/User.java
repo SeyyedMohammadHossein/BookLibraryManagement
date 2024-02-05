@@ -110,11 +110,11 @@ public class User {
      * @return It returns the desired user information in the form of a string as output
      */
     public String toString(){
-        String output = this.getName() + " " + this.getEmail() + " " + this.getPassword() + "\n";
+        String output = this.getName() + " " + this.getEmail() + " " + this.getPassword() + "<br>";
+        output += "--------------------------------------";
         for (Book book : borrowedBooks) {
-            output += "    " + book.toString() + "\n";
+            output += "<dd>" + book.toString() + "</dd>";
         }
-        output += "------------------";
         return output;
     }
 }

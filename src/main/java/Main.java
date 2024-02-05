@@ -27,9 +27,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         /*File file = new File()*/
         LibraryRegex regex = new LibraryRegex();
-        Library library = new Library(/*"C:\\Users\\Negar\\IdeaProjects\\AP_Midterm_Project\\src\\usersInfo.txt",
-                "C:\\Users\\Negar\\IdeaProjects\\AP_Midterm_Project\\src\\booksInfo"
-                , */"jdbc:mysql://localhost:3306/jdbc", "root", "");
+        Library library = new Library("jdbc:mysql://localhost:3306/jdbc", "root", "");
         Scanner scanner = new Scanner(System.in);
         String command = scanner.nextLine();
         Matcher matcher;

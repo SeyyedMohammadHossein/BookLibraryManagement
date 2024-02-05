@@ -115,6 +115,7 @@ public class Library {
         if (users.size() < id)
             return "user not found";
         users.remove(id - 1);
+        sql.removeUserFromDatabase(id);
         return "user deleted";
     }
 
@@ -129,7 +130,7 @@ public class Library {
             return "no user exists";
         String output = "";
         for (int i = 0; i < users.size(); i++) {
-            output += i + 1 + " " + users.get(i) + "\n";
+            output += i + 1 + " " + users.get(i) + "<br>";
         }
         return output;
     }
@@ -169,7 +170,7 @@ public class Library {
             return "no book exists";
         String output = "";
         for (Book book : books) {
-            output += book + "\n";
+            output += book + "<br>";
         }
         return output;
     }
